@@ -26,6 +26,34 @@ app.get('/game/*', (req, res) => {
 	res.sendFile(path.resolve("frontend", "index.html"));
 });
 
+app.post('/backend/send', async (req, res) => {
+    const realBackendURL = 'http://43.200.180.40/realback/send';
+    const { userEmail, access_token } = req.body;
+
+    try {
+        const response = await fetch(realBackendURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+            },
+            body: JSON.stringify({
+                userEmail: userEmail,
+                access_token: access_token
+            })
+        });
+		
+        if (response.status == 200 || response.status == 201) {
+            res.status(200).send();
+        } else {
+            throw new Error('Failed to forward request to real backend server.');
+        }
+    } catch (error) {
+        console.error('Error forwarding request:', error);
+        res.status(500).send('Error forwarding request to real backend server.');
+    }
+});
+
 app.post('/get/security', (req, res) => {
     const code = req.body.code;
     const postData = querystring.stringify({
@@ -51,7 +79,6 @@ app.post('/get/security', (req, res) => {
             data += chunk;
         });
         response.on('end', () => {
-            console.log('Token data:', data);
             res.json(JSON.parse(data));
         });
     });
@@ -67,7 +94,6 @@ app.post('/get/security', (req, res) => {
 
 app.get('/get/userinfo', (req, res) => {
     const access_token = req.headers.authorization;
-
     
     const getUserInfo = () => {
         return new Promise((resolve, reject) => {

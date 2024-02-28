@@ -1,9 +1,14 @@
-import { response } from "express";
-
 export default class FA2Modal {
     static attemptCount = 0; // 시도 횟수를 저장하는 정적 변수
 
     static async displayFA2Modal(userEmailAndCode, access_token) {
+		const userEmail = userEmailAndCode.email;
+        const code = userEmailAndCode.code;
+		const backendURL = '/backend/send';
+
+        console.log('userEmail in 2FA = ', userEmail);
+        console.log('code in 2FA = ', code);
+
 		const modalHTML = `
 			<div id="fa2-modal" class="modal">
 				<div class="modal-content">
@@ -19,13 +24,7 @@ export default class FA2Modal {
 		document.body.insertAdjacentHTML('beforeend', modalHTML);
 		const modalElement = document.getElementById('fa2-modal');
 		modalElement.style.display = 'block';
-		const userEmail = userEmailAndCode.email;
-        const code = userEmailAndCode.code;
-		const backendURL = '';
-
-        console.log('userEmail in 2FA = ', userEmail);
-        console.log('code in 2FA = ', code);
-
+		
         document.getElementById('check-code-btn').addEventListener('click', async () => {
             const userInput = document.getElementById('user-input-code').value;
             FA2Modal.attemptCount++;
@@ -43,6 +42,8 @@ export default class FA2Modal {
                         })
                     });
 
+					console.log("returned status = ", response.status);
+
                     if (200 <= response.status && response.status < 300) {
                         document.getElementById('attempt-message').innerText = 'The code is right!';
                         localStorage.setItem('FA2_verified', true);
@@ -59,6 +60,7 @@ export default class FA2Modal {
                     document.getElementById('attempt-message').innerText = `The code is invalid (${FA2Modal.attemptCount} / 3)`;
                 } else {
                     localStorage.clear();
+					console.log('clear localstorage!!!');
 					window.location.href = '/';
                 }
             }

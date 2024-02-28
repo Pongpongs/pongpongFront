@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     let access_token = localStorage.getItem('access_token');
 	let access_token_expire_time = Number(localStorage.getItem('expire_time'));
 	let current_time = Math.floor(Date.now() / 1000);
-	if (access_token_expire_time <= current_time) localStorage.clear();
+	
+	if (access_token_expire_time != 0 && access_token_expire_time <= current_time) localStorage.clear();
     
     if (!access_token || !localStorage.getItem('FA2_verified')) {
         let security_code = getCodeFromUrl();
@@ -80,7 +81,6 @@ async function routePage() {
     }
 }
 
-
 function getCodeFromUrl() {
     const security_code = new URLSearchParams(window.location.search).get('code');
 	if (security_code) {
@@ -118,7 +118,7 @@ async function fetchAccessToken(code) {
 
         if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
-			localStorage.setItem('expire_time', data.created_at + data.expires_in);
+			localStorage.setItem('expire_time', Math.floor(Date.now() / 1000) + data.expires_in);
         } else {
             console.log('Failed to obtain access token.');
         }
