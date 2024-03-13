@@ -107,6 +107,7 @@ async function getEmailAndCode(access_token) {
 
 async function fetchAccessToken(code) { 
     try {
+		console.log("code = ", code);
         const response = await fetch('/get/security', { 
             method: 'POST',
             headers: {
@@ -115,6 +116,7 @@ async function fetchAccessToken(code) {
             body: JSON.stringify({ code: code })
         });
         const data = await response.json();
+		console.log("data = ", data);
 
         if (data.access_token) {
             localStorage.setItem('access_token', data.access_token);
