@@ -13,15 +13,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve("frontend", "index.html"));
 });
 
-app.get('/get/security', (req, res) => {
-	const code = req.query.code;
-	if (code) {
-		res.redirect(`http://localhost:3000?code=${code}`)
-	} else {
-		res.status(400).send("Code not given");
-	}
-});
-
 app.get('/game/*', (req, res) => {
 	res.sendFile(path.resolve("frontend", "index.html"));
 });
@@ -54,12 +45,22 @@ app.post('/backend/send', async (req, res) => {
     }
 });
 
+app.get('/get/security', (req, res) => {
+	const code = req.query.code;
+	if (code) {
+		res.redirect(`http://localhost:3000?code=${code}`)
+	} else {
+		res.status(400).send("Code not given");
+	}
+});
+
 app.post('/get/security', (req, res) => {
     const code = req.body.code;
+
     const postData = querystring.stringify({
         grant_type: 'authorization_code',
         client_id: 'u-s4t2ud-38e1085a57405a04552b3a4b255d1b9a1708d9a23637ac72693e9469b06a779f',
-        client_secret: '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',
+        client_secret: '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',
         code: code,
         redirect_uri: 'http://localhost:3000/get/security'
     });
@@ -70,9 +71,11 @@ app.post('/get/security', (req, res) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-        }
+        },
+		key: fs.readFileSync('경로/to/your/private.key'),
+		cert: fs.readFileSync('경로/to/your/certificate.crt')
     };
-
+	  
     const request = https.request(options, response => {
         let data = '';
         response.on('data', chunk => {
@@ -80,6 +83,7 @@ app.post('/get/security', (req, res) => {
         });
         response.on('end', () => {
             res.json(JSON.parse(data));
+			console.log("wow === ", JSON.parse(data));
         });
     });
 
