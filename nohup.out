@@ -1,0 +1,57 @@
+Server running at https://pongpongs.duckdns.org
+code =  ead4a656b43ec034ef778717d64f012397264989583f14fc0912ac1e2f194128
+request ===  {
+  access_token: 'ca80cbee517b5a4f87190c1e9e6701b45bf6d824fe2dab6e8418b46c22a88796',
+  token_type: 'bearer',
+  expires_in: 7200,
+  refresh_token: '0bcb7aa0ba5c23335d0aa23ff35765ebed7604e4b383fd2155b173a065961d6e',
+  scope: 'public',
+  created_at: 1710760377,
+  secret_valid_until: 1711846834
+}
+Email sent: 250 2.0.0 OK  1710760381 b12-20020a170902650c00b001dc96292774sm9134637plk.296 - gsmtp
+code =  ead4a656b43ec034ef778717d64f012397264989583f14fc0912ac1e2f194128
+request ===  {
+  error: 'invalid_grant',
+  error_description: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
+}
+Error sending email: Error: No recipients defined
+    at SMTPConnection._formatError (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:790:19)
+    at SMTPConnection._setEnvelope (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:1023:34)
+    at SMTPConnection.send (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:621:14)
+    at sendMessage (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-transport/index.js:228:28)
+    at /home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-transport/index.js:286:25
+    at SMTPConnection._actionAUTHComplete (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:1578:9)
+    at SMTPConnection.<anonymous> (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:546:26)
+    at SMTPConnection._processResponse (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:969:20)
+    at SMTPConnection._onData (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:755:14)
+    at TLSSocket.SMTPConnection._onSocketData (/home/ubuntu/pongpongFront/node_modules/nodemailer/lib/smtp-connection/index.js:193:44) {
+  code: 'EENVELOPE',
+  command: 'API'
+}
+code =  4c8b0a0a361b63649097335af723261f0f571f137232c453138c4e042b82a56c
+request ===  {
+  access_token: 'c6386f32a0159233bb71f3a9b2726e365dd1db8cd558197d6a183f09dfb2a677',
+  token_type: 'bearer',
+  expires_in: 7200,
+  refresh_token: 'ecdd7b984e298bc5e11eca81a553ee1644164273afaae6114a52ba03b8a3f017',
+  scope: 'public',
+  created_at: 1710813328,
+  secret_valid_until: 1711846834
+}
+Email sent: 250 2.0.0 OK  1710813333 iw9-20020a170903044900b001defa712890sm6775998plb.72 - gsmtp
+code =  349e72d8a2656df612d8515f7c2c76adea4f96d83524fa552d78d5e4b9d7ff6f
+request ===  {
+  access_token: 'f461e3fa1825e7046fd3cc9b7f27aacc9a4f5b223206254914005068734f58b0',
+  token_type: 'bearer',
+  expires_in: 7200,
+  refresh_token: 'c22d9c642d9a5e9155caa95d09dd694cba93a9e291186ae8ae156d1fb68bd816',
+  scope: 'public',
+  created_at: 1710912220,
+  secret_valid_until: 1711846834
+}
+Email sent: 250 2.0.0 OK  1710912224 m10-20020a17090a7f8a00b0029c13f9bd7fsm561804pjl.34 - gsmtp
+Error forwarding request: Error: Failed to forward request to real backend server.
+    at /home/ubuntu/pongpongFront/app.js:58:19
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)

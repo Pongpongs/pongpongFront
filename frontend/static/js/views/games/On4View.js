@@ -1,6 +1,6 @@
-import AbstractView from "./AbstractView.js";
+import AbstractView from "../AbstractView.js";
 
-export default class Online4View extends AbstractView {
+export default class On4View extends AbstractView {
 	constructor(params) {
 		super(params);
 		this.setTitle('Online 1 vs 1 vs 1 vs 1');

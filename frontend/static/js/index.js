@@ -1,9 +1,11 @@
 import LoginModal from "./views/LoginModal.js";
 import FA2Modal from "./views/FA2Modal.js";
-import Local1on1 from "./views/Local1on1View.js";
-import Online1on1 from "./views/Online1on1View.js";
-import Online4 from "./views/Online4View.js";
-import OnlineTournament from "./views/OnlineTournamentView.js";
+import Off2 from "./views/games/Off2View.js";
+import Off4 from "./views/games/Off4View.js";
+import OffTour from "./views/games/OffTourView.js";
+import On2 from "./views/games/On2View.js";
+import On4 from "./views/games/On4View.js";
+import OnTour from "./views/games/OnTourView.js";
 import GameSelectView from "./views/GameSelectView.js";
 import GameEnterView from "./views/GameEnterView.js";
 
@@ -53,10 +55,12 @@ async function routePage() {
     const routes = [
         { path: "/", view: GameEnterView },
         { path: "/game/select", view: GameSelectView },
-        { path: "/game/local/1on1", view: Local1on1 },
-        { path: "/game/online/1on1", view: Online1on1 },
-        { path: "/game/online/4", view: Online4 },
-        { path: "/game/online/tournament", view: OnlineTournament }
+        { path: "/game/off/2", view: Off2 },
+        { path: "/game/off/4", view: Off4 },
+        { path: "/game/off/tour", view: OffTour },
+        { path: "/game/on/2", view: On2 },
+        { path: "/game/on/4", view: On4 },
+        { path: "/game/on/tourn", view: OnTour }
     ];
 
     const potentialMatches = routes.map(route => {
